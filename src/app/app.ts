@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,29 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('zct-general-monitor');
+  //protected readonly title = signal('zct-general-monitor');
+  sideMode: 'side' | 'over' = 'side';
+  opened = true;
+
+  constructor(private breakpointObserver: BreakpointObserver) { }
+
+  ngOnInit() {
+    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
+      .subscribe(result => {
+        if (result.matches) {
+          this.sideMode = 'over';
+          this.opened = false;
+        } else {
+          this.sideMode = 'side';
+          this.opened = true;
+        }
+      });
+  }
+
+  closeIfOver() {
+    if (this.sideMode === 'over') {
+      this.opened = false;
+    }
+  }
+
 }

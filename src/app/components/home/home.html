@@ -1,0 +1,9 @@
+<div>
+    <p>MQTT Status: {{ (mqttService.state | async) === 0 ? 'Disconnected' : ((mqttService.state | async) === 1 ?
+        'Connecting' : 'Connected') }}</p>
+        <p>Received Message: {{ receivedMessage }}</p>
+        <button matFab extended (click)="publishMessage()">
+            <mat-icon>publish</mat-icon>
+            Publish Test Message
+        </button>
+</div>
