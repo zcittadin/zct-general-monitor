@@ -8,7 +8,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrl: './app.scss'
 })
 export class App {
-  //protected readonly title = signal('zct-general-monitor');
   sideMode: 'side' | 'over' = 'side';
   opened = true;
 
