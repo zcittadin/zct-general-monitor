@@ -1,0 +1,34 @@
+name: Deploy Angular to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master   # dispara o deploy sempre que houver push na branch main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Build Angular
+        run: npm run build -- --configuration production --base-href "/zct-general-monitor/"
+
+      - name: Corrigir roteamento SPA (copiar 404.html)
+        run: cp dist/zct-general-monitor/browser/index.html dist/zct-general-monitor/browser/404.html
+
+      - name: Deploy para GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages        # branch de destino
+          folder: dist/zct-general-monitor/browser  # pasta a publicar

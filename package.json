@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href '/zct-general-monitor/' && cp dist/zct-general-monitor/browser/index.html dist/zct-general-monitor/browser/404.html && npx angular-cli-ghpages --dir=dist/zct-general-monitor/browser"
   },
   "prettier": {
     "printWidth": 100,
