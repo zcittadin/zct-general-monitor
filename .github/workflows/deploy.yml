@@ -3,7 +3,7 @@ name: Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - master   # dispara o deploy sempre que houver push na branch main
+      - main   # dispara o deploy sempre que houver push na branch main
 
 jobs:
   build-deploy:
