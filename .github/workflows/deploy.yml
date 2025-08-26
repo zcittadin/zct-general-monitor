@@ -8,6 +8,8 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # garante que o workflow pode dar push
 
     steps:
       - name: Checkout código
